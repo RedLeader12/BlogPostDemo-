@@ -9,27 +9,27 @@ import FullPost from '../FullPost/FullPost';
 
 class Posts extends Component {
     state = {
-        posts: [],
+        posts: []
     }
 
-    componentDidMount (){
-        console.log(this.props)
-        axios.get('/posts')
-        .then(response => {
-            const posts = response.data.slice(0,4)
-            const updatedPosts = posts.map(post => {
-                return {
-                    ...post,
-                    author: 'Dania'
-                }
-            })
-            this.setState({posts: updatedPosts});
-        }).catch(error => {
-            console.log(error);
-            // this.setState({error: true});
-        })
+    componentDidMount () {
+        axios.get( '/posts' )
+            .then( response => {
+                const posts = response.data.slice( 0, 4 );
+                const updatedPosts = posts.map( post => {
+                    return {
+                        ...post,
+                        author: 'Max'
+                    }
+                } );
+                this.setState( { posts: updatedPosts } );
+                // console.log( response );
+            } )
+            .catch( error => {
+                console.log( error );
+                // this.setState({error: true});
+            } );
     }
-
 
     postSelectedHandler = (id) => {
         this.props.history.push({pathname: '/posts/' + id})
